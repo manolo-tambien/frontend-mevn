@@ -3,11 +3,16 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
+  <div class="h-screen">
+    <!-- Barra horizontal -->
+    <div class="text-white py-4 px-6">
+      Barra superior
+    </div>
 
-  <div class="md:flex h-screen">
-      <div class="h-64 md:h-auto bg-cover bg-center md:w-1/3 bg-app"></div>
-      <div class="md:w-2/3 px-10 py-5 min-h-full overflow-y-scroll">
-        <RouterView />
-      </div>
+    <!-- Div que contiene el RouterView -->
+    <div class="px-10 py-5 min-h-full overflow-y-scroll">
+      <RouterView />
+    </div>
   </div>
 </template>
+
