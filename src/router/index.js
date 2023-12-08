@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // Importa componentes y API necesarios.
 import HomeView from '../views/HomeView.vue'
 import AppointmentsLayout from '../views/appointments/AppointmentsLayout.vue'
+import CuentasEspejoLayout from '../views/cuentas-espejo/CuentasEspejoLayout.vue'
 import AuthAPI from '../api/AuthAPI'
 
 // Crea un nuevo enrutador Vue.
@@ -31,6 +32,12 @@ const router = createRouter({
           component: () => import('../views/admin/AppointmentsView.vue'),
         }
       ]
+    },
+    {
+      path: '/cuentas-espejo',
+      name: 'cuentas-espejo',
+      component: CuentasEspejoLayout,
+      meta: {requiresAuth: true}
     },
     // Ruta para las reservaciones ("/reservaciones") con un layout y subrutas para diferentes vistas.
     {
