@@ -12,9 +12,6 @@ module.exports = {
     extend: {
       backgroundImage : {
         "app" : "url('/img/1.jpg')"
-      },
-      colors: {
-        "vtd-primary" : colors.blue
       }
     },
   },
