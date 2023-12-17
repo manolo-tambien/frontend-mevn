@@ -52,7 +52,9 @@ const filters = ref({
 <template>
     <div class="card">
         <DataTable v-model:filters="filters" :value="storeCuentasEspejo.cuentasEspejo" paginator :rows="10" dataKey="_id"
-            filterDisplay="row" :loading="loading"
+            :loading="loading" showGridlines :rowsPerPageOptions="[5, 10, 25]"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+            currentPageReportTemplate="Mostrando de {first} a {last} cuentas de un total de {totalRecords} cuentas espejo"
             :globalFilterFields="['gerente', 'cliente', 'linea_transportista', 'salidas', 'url', 'usuario', 'cuentas', 'estaciones']">
             <template #header>
                 <div class="flex justify-content-end">
@@ -121,7 +123,7 @@ const filters = ref({
                 <!-- <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editProduct(slotProps.data)" /> -->
                 <template #body="data">
                     <Button icon="pi pi-pencil" outlined rounded class="mr-2" />
-                    <Button icon="pi pi-trash" outlined rounded severity="danger"/>
+                    <Button icon="pi pi-trash" outlined rounded severity="danger" />
                 </template>
             </Column>
         </DataTable>
@@ -139,11 +141,11 @@ const storeCuentasEspejo = useCuentaEspejoStore()
 const customers = ref();
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    gerente: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-    'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-    representative: { value: null, matchMode: FilterMatchMode.IN },
-    status: { value: null, matchMode: FilterMatchMode.EQUALS },
-    verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+    // gerente: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    // 'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    // representative: { value: null, matchMode: FilterMatchMode.IN },
+    // status: { value: null, matchMode: FilterMatchMode.EQUALS },
+    // verified: { value: null, matchMode: FilterMatchMode.EQUALS }
 });
 
 
