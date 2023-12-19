@@ -38,6 +38,7 @@ export const useCuentaEspejoStore = defineStore('cuenta-espejo', () => {
     //     cuentasEspejo.value = data
     // }
 
+ 
     async function editCuentaEspejo(cuentaEspejoModificada){
         // const {data} await CuentasEspejoAPI.editCuentaEspejo(cuentaEspejoModificada)
         // cuentasEspejo.value = data
@@ -62,7 +63,9 @@ export const useCuentaEspejoStore = defineStore('cuenta-espejo', () => {
         logout,
         cuentasEspejo,
         getAllCuentasEspejo,
+
         getUserName,
         editCuentaEspejo
+
     }
 })

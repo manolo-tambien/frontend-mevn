@@ -119,6 +119,7 @@ const filters = ref({
                 <template #body="{data}">
                     <Password disabled :feedback="false" v-model.trim="data.password" ></Password>
                 </template>
+
             </Column>
             <Column field="cuentas" header="Cuentas">
             </Column>
@@ -188,7 +189,9 @@ const filters = ref({
             </div>
             <div class="field">
                 <label for="description">Estaciones</label>
+
                 <InputText id="estaciones" v-model.trim="cuentaEspejo.estaciones" required="true"
+
                     :class="{ 'p-invalid': submitted && !cuentaEspejo.estaciones }" />
                 <small class="p-error" v-if="submitted && !cuentaEspejo.estaciones">Las estaciones son requeridas</small>
             </div>
@@ -285,6 +288,7 @@ const ocultarDialog = () => {
     cuentaEspejoDialog.value = false;
     submitted.value = false;
 };
+
 const editarCuentaEspejo = (cuentaEspejoModificada) => {
     //cuentaEspejo.value = { ...cuentaEspejoSeleccionada };
     // storeCuentasEspejo.editCuentaEspejo(cuentaEspejoModificada)
