@@ -58,7 +58,7 @@ const filters = ref({
             currentPageReportTemplate="Mostrando de {first} a {last} cuentas de un total de {totalRecords} cuentas espejo"
             :globalFilterFields="['gerente', 'cliente', 'linea_transportista', 'salidas', 'url', 'usuario', 'cuentas', 'estaciones']">
             <template #header>
-                <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+                <div class="">
                     <span class="p-input-icon-left">
                         <i class="pi pi-search" />
                         <InputText v-model="filters['global'].value" placeholder="Buscar..." />
@@ -116,6 +116,10 @@ const filters = ref({
                 </template> -->
             </Column>
             <Column field="password" header="Password">
+                <template #body="{data}">
+                    <Password disabled :feedback="false" v-model.trim="data.password" ></Password>
+                </template>
+
             </Column>
             <Column field="cuentas" header="Cuentas">
             </Column>
@@ -185,7 +189,9 @@ const filters = ref({
             </div>
             <div class="field">
                 <label for="description">Estaciones</label>
-                <InputText id="cuentas" v-model.trim="cuentaEspejo.estaciones" required="true"
+
+                <InputText id="estaciones" v-model.trim="cuentaEspejo.estaciones" required="true"
+
                     :class="{ 'p-invalid': submitted && !cuentaEspejo.estaciones }" />
                 <small class="p-error" v-if="submitted && !cuentaEspejo.estaciones">Las estaciones son requeridas</small>
             </div>
@@ -282,46 +288,13 @@ const ocultarDialog = () => {
     cuentaEspejoDialog.value = false;
     submitted.value = false;
 };
-const editarCuentaEspejo = (cuentaEspejoSeleccionada) => {
-    cuentaEspejo.value = { ...cuentaEspejoSeleccionada };
+
+const editarCuentaEspejo = (cuentaEspejoModificada) => {
+    //cuentaEspejo.value = { ...cuentaEspejoSeleccionada };
+    // storeCuentasEspejo.editCuentaEspejo(cuentaEspejoModificada)
+    
     cuentaEspejoDialog.value = true;
 };
-
-const getCustomers = (data) => {
-    return [...(data || [])].map((d) => {
-        d.date = new Date(d.date);
-
-        return d;
-    });
-};
-const formatDate = (value) => {
-    return value.toLocaleDateString('en-US', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
-};
-const formatCurrency = (value) => {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-};
-const getSeverity = (status) => {
-    switch (status) {
-        case 'unqualified':
-            return 'danger';
-
-        case 'qualified':
-            return 'success';
-
-        case 'new':
-            return 'info';
-
-        case 'negotiation':
-            return 'warning';
-
-        case 'renewal':
-            return null;
-    }
-}
 
 </script>
 
