@@ -10,7 +10,7 @@
         try {
             const { data: { token } } = await AuthAPI.login(formData)
             localStorage.setItem('AUTH_TOKEN', token)
-            router.push({name: 'my-appointments'})
+            router.push({name: 'cuentas-espejo'})
         } catch (error) {
             toast.open({
                 message: error.response.data.msg,
@@ -21,9 +21,6 @@
 </script>
 
 <template>
-    <h1 class="text-6xl font-extrabold text-white text-center mt-10">Iniciar Sesión</h1>
-    <p class="text-2xl text-white text-center my-5">Si tienes una cuenta, inicia sesión</p>
-
     <FormKit
         id="loginForm"
         type="form"

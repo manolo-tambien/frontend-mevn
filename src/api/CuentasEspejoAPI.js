@@ -4,8 +4,11 @@ export default {
     getAllCuentasEspejo() {
         return api.get('/cuentas-espejo')
     },
-    editCuentaEspejo(cuentaEspejoModificada){
-        return api.put('/edit-cuenta-espejo',cuentaEspejoModificada)
+    update(id, cuentaEspejoModificada){
+        return api.put(`/cuentas-espejo/${id}`,cuentaEspejoModificada)
+    },
+    deleteCuentaEspejo(id){
+        return api.delete(`/cuentas-espejo/${id}`)
     }
 }
 
