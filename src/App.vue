@@ -24,7 +24,7 @@ const items = ref([
         </a>
       </template>
       <template #end="{item}">
-        <div class="flex align-items-center gap-2">
+        <div class="flex align-items-center">
           <span>{{userStore.getUserName}}</span>
           <Button label="Salir" icon="pi pi-times" iconPos="right" severity="danger" @click="userStore.logout" />
         </div>

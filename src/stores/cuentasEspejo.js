@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
 import CuentasEspejoAPI from "../api/CuentasEspejoAPI";
 
+
 export const useCuentaEspejoStore = defineStore('cuenta-espejo', () => {
 
     const router = useRouter()
@@ -20,9 +21,7 @@ export const useCuentaEspejoStore = defineStore('cuenta-espejo', () => {
 
 
     async function updateCuentaEspejo(cuentaEspejoModificada) {
-        console.log(cuentaEspejoModificada);
-        const {data} = await CuentasEspejoAPI.update(cuentaEspejoModificada._id, cuentaEspejoModificada)
-        
+        await CuentasEspejoAPI.update(cuentaEspejoModificada._id, cuentaEspejoModificada)
     }
 
     async function getAllCuentasEspejo() {

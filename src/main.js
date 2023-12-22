@@ -1,5 +1,5 @@
 // Importa el archivo CSS principal para los estilos de la aplicación.
-import '/node_modules/primeflex/primeflex.css'
+// import '/node_modules/primeflex/primeflex.css'
 import './assets/main.css'
 import './assets/style.css'
 import "primevue/resources/themes/lara-light-green/theme.css";

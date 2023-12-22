@@ -7,7 +7,7 @@
         :loading="loading" showGridlines :rowsPerPageOptions="[5, 10, 25]"
         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
         currentPageReportTemplate="Mostrando de {first} a {last} cuentas de un total de {totalRecords} cuentas espejo"
-        :globalFilterFields="['gerente', 'cliente', 'linea_transportista', 'salidas', 'url', 'usuario', 'cuentas', 'estaciones']">
+        :globalFilterFields="['gerente', 'cliente', 'linea_transportista', 'salidas', 'url', 'usuario', 'cuentas']">
         <template #header>
             <div class="">
                 <span class="p-input-icon-left">
@@ -24,57 +24,22 @@
                 </template> -->
         </Column>
         <Column header="Cliente" field="cliente"></Column>
-        <!--  <template #body="{ data }">
-                    {{ data.cliente }}
-                    <div class="flex align-items-center gap-2">
-                        <img :alt="data.representative.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${data.representative.image}`" style="width: 32px" />
-                        <span>{{ data.representative.name }}</span>
-                    </div>
-                </template> -->
-        <!--<template #filter="{ filterModel, filterCallback }">
-                     <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="representatives" optionLabel="name" placeholder="Any" class="p-column-filter" style="min-width: 14rem" :maxSelectedLabels="1">
-                        <template #option="slotProps">
-                            <div class="flex align-items-center gap-2">
-                                <img :alt="slotProps.option.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${slotProps.option.image}`" style="width: 32px" />
-                                <span>{{ slotProps.option.name }}</span>
-                            </div>
-                        </template>
-                    </MultiSelect> 
-                </template>-->
 
         <Column field="linea_transportista" header="Línea Transportista">
-            <!--<template #body="{ data }">
-                    {{ data.linea_transportista }}
-                     <Tag :value="data.status" :severity="getSeverity(data.status)" />
-                </template> -->
-            <!-- <template #filter="{ filterModel, filterCallback }">
-                    <Dropdown v-model="filterModel.value" @change="filterCallback()" :options="statuses" placeholder="Select One" class="p-column-filter" style="min-width: 12rem" :showClear="true">
-                        <template #option="slotProps">
-                            <Tag :value="slotProps.option" :severity="getSeverity(slotProps.option)" />
-                        </template>
-                    </Dropdown>
-                </template> -->
         </Column>
         <Column field="salidas" header="Salidas">
-            <!-- <template #filter="{ filterModel, filterCallback }">
-                    <TriStateCheckbox v-model="filterModel.value" @change="filterCallback()" />
-                </template> -->
         </Column>
         <Column field="url" header="Url"></Column>
         <Column field="usuario" header="Usuario">
-            <!-- <template #body="{ data }">
-                    {{ data.url }}
-                </template> -->
         </Column>
-        <Column field="password" header="Password">
+        <!-- <Column field="password" header="Password">
             <template #body="{ data }">
                 <Password disabled :feedback="false" v-model.trim="data.password"></Password>
             </template>
-
-        </Column>
+        </Column> -->
         <Column field="cuentas" header="Cuentas">
         </Column>
-        <Column field="estaciones" header="Estaciones"></Column>
+       
         <Column header="Acciones">
             <!-- <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editProduct(slotProps.data)" /> -->
             <template #body="cuentaEspejo">
@@ -88,38 +53,38 @@
     <Dialog v-model:visible="cuentaEspejoDialog" :style="{ width: '450px' }" header="Detalles de Cuenta Espejo"
         :modal="true" class="p-fluid">
         <div class="field">
-            <label for="name">Gerente</label>
+            <label for="gerente">Gerente</label>
             <InputText id="gerente" v-model.trim="cuentaEspejo.gerente" required="true" autofocus
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.gerente }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.gerente">El gerente es requerido.</small>
         </div>
         <div class="field">
-            <label for="description">Cliente</label>
+            <label for="cliente">Cliente</label>
             <InputText id="cliente" v-model.trim="cuentaEspejo.cliente" required="true"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.cliente }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.cliente">El cliente es requerido.</small>
         </div>
         <div class="field">
-            <label for="description">Linea Transportista</label>
+            <label for="linea_transportista">Linea Transportista</label>
             <InputText id="linea_transportista" v-model.trim="cuentaEspejo.linea_transportista" required="true"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.linea_transportista }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.linea_transportista">La línea transportista es
                 requerida.</small>
         </div>
         <div class="field">
-            <label for="description">Salidas</label>
+            <label for="salidas">Salidas</label>
             <InputText id="salidas" v-model.trim="cuentaEspejo.salidas" required="true"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.salidas }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.salidas">Las salidas son requeridas.</small>
         </div>
         <div class="field">
-            <label for="description">URL</label>
+            <label for="url">URL</label>
             <InputText id="url" v-model.trim="cuentaEspejo.url" required="true"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.url }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.url">La url es requerida.</small>
         </div>
         <div class="field">
-            <label for="description">Usuario</label>
+            <label for="usuario">Usuario</label>
             <InputText id="usuario" v-model.trim="cuentaEspejo.usuario" required="true"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.usuario }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.usuario">El usuario es requerido.</small>
@@ -128,32 +93,14 @@
             <label for="description">Contraseña</label>
             <Password id="password" v-model.trim="cuentaEspejo.password"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.password }" disabled />
-            <!-- <InputText id="url" v-model.trim="cuentaEspejo.password" required="true" :class="{'p-invalid': submitted && !cuentaEspejo.password}" /> -->
             <small class="p-error" v-if="submitted && !cuentaEspejo.password">La contraseña es requerida.</small>
         </div>
         <div class="field">
-            <label for="description">Cuentas</label>
+            <label for="cuentas">Cuentas</label>
             <InputText id="cuentas" v-model.trim="cuentaEspejo.cuentas" required="true"
                 :class="{ 'p-invalid': submitted && !cuentaEspejo.cuentas }" />
             <small class="p-error" v-if="submitted && !cuentaEspejo.cuentas">La cuenta es requerida</small>
         </div>
-        <div class="field">
-            <label for="description">Estaciones</label>
-
-            <InputText id="estaciones" v-model.trim="cuentaEspejo.estaciones" required="true"
-                :class="{ 'p-invalid': submitted && !cuentaEspejo.estaciones }" />
-            <small class="p-error" v-if="submitted && !cuentaEspejo.estaciones">Las estaciones son requeridas</small>
-        </div>
-        <!-- <div class="formgrid grid">
-                <div class="field col">
-                    <label for="price">Price</label>
-                    <InputNumber id="price" v-model="product.price" mode="currency" currency="USD" locale="en-US" />
-                </div>
-                <div class="field col">
-                    <label for="quantity">Quantity</label>
-                    <InputNumber id="quantity" v-model="product.quantity" integeronly />
-                </div>
-            </div> -->
         <template #footer>
             <Button label="Cancelar" icon="pi pi-times" text @click="ocultarDialog" />
             <Button label="Guardar" icon="pi pi-check" text @click="guardarCuentaEspejo" />
@@ -210,7 +157,7 @@ const eliminarCuentaEspejo = () => {
     toast.add({ severity: 'success', summary: 'Exitoso', detail: 'Cuenta espejo eliminada', life: 9000 });
 };
 const guardarCuentaEspejo = () => {
-    submitted.value = true;
+    submitted.value = false;
 
     storeCuentasEspejo.updateCuentaEspejo(cuentaEspejo.value)
 

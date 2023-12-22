@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@formkit/themes": "^0.17.2",
-    "@formkit/vue": "^0.17.2",
+    "@formkit/themes": "^0.17.5",
+    "@formkit/vue": "^0.17.5",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "pinia": "^2.0.36",
