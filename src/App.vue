@@ -23,9 +23,10 @@ const items = ref([
           <span class="ml-2">{{ item.label }}</span>
         </a>
       </template>
-      <template #end="{item}">
-        <div class="flex align-items-center">
-          <span>{{userStore.getUserName}}</span>
+      <template #end>
+        <div class="flex align-items-center gap-2">
+          <!-- <span>{{userStore.getUserName}}</span> -->
+          <Chip :label="userStore.getUserName" icon="pi pi-user"/>
           <Button label="Salir" icon="pi pi-times" iconPos="right" severity="danger" @click="userStore.logout" />
         </div>
       </template>

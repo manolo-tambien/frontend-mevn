@@ -43,8 +43,8 @@
         <Column header="Acciones">
             <!-- <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editProduct(slotProps.data)" /> -->
             <template #body="cuentaEspejo">
-                <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editarCuentaEspejo(cuentaEspejo.data)" />
-                <Button icon="pi pi-trash" outlined rounded severity="danger"
+                <Button icon="pi pi-pencil"  rounded class="mr-2" @click="editarCuentaEspejo(cuentaEspejo.data)" />
+                <Button icon="pi pi-trash"  rounded severity="danger"
                     @click="confirmDeleteProduct(cuentaEspejo.data)" />
             </template>
         </Column>

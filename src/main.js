@@ -2,7 +2,7 @@
 // import '/node_modules/primeflex/primeflex.css'
 import './assets/main.css'
 import './assets/style.css'
-import "primevue/resources/themes/lara-light-green/theme.css";
+import "primevue/resources/themes/lara-light-blue/theme.css";
 import 'primeicons/primeicons.css'
 
 // Importa funciones y objetos necesarios de Vue.
@@ -23,6 +23,7 @@ import Password from 'primevue/password'
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice'
 import Menubar from 'primevue/menubar';
+import Chip from 'primevue/chip';
 
 
 
@@ -52,6 +53,7 @@ app.component('Dialog', Dialog)
 app.component('Password', Password)
 app.component('Toast', Toast)
 app.component('Menubar', Menubar)
+app.component('Chip',Chip)
 
 
 // Usa el sistema de estado global Pinia para manejar el estado de la aplicación.

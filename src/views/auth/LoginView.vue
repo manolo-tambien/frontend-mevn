@@ -1,5 +1,4 @@
 <script setup>
-    import { inject } from 'vue'
     import { useRouter } from 'vue-router'
     import AuthAPI from '../../api/AuthAPI';
     import { useToast } from 'primevue/usetoast';
