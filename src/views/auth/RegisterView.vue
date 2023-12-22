@@ -25,8 +25,8 @@
 </script>
 
 <template>
-    <h1 class="text-6xl font-extrabold text-white text-center mt-10">Crea una cuenta</h1>
-    <p class="text-2xl text-white text-center my-5">Crea una cuenta en AppSalón</p>
+    <h1 class="">Crea una cuenta</h1>
+    
 
     <FormKit
         id="registerForm"

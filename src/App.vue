@@ -1,18 +1,38 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import {ref} from 'vue'
+
+import { useUserStore } from './stores/user'
+const userStore = useUserStore()
+
+const items = ref([
+    {
+        label: 'Cuentas Espejo',
+        icon: 'pi pi-home'
+    }
+]);
+
 </script>
 
 <template>
-   
-    <!-- Barra horizontal -->
-    <div class="">
-      Barra superior
-    </div>
-
-    <!-- Div que contiene el RouterView -->
-     
-      <RouterView />
-     
-  
+  <div v-if="userStore.getUserName" class="card">
+    <Menubar :model="items">
+      <template #item="{ item, props }">
+        <a v-ripple class="flex align-items-center" v-bind="props.action">
+          <span :class="item.icon" />
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </template>
+      <template #end="{item}">
+        <div class="flex align-items-center">
+          <span>{{userStore.getUserName}}</span>
+          <Button label="Salir" icon="pi pi-times" iconPos="right" severity="danger" @click="userStore.logout" />
+        </div>
+      </template>
+    </Menubar>
+  </div>
+  <div class="card">
+    <RouterView />
+  </div>
 </template>
 

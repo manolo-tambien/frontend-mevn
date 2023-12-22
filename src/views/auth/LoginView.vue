@@ -2,28 +2,24 @@
     import { inject } from 'vue'
     import { useRouter } from 'vue-router'
     import AuthAPI from '../../api/AuthAPI';
+    import { useToast } from 'primevue/usetoast';
 
-    const toast = inject('toast')
+    const toast = useToast();
     const router = useRouter()
 
     const handleSubmit = async (formData) => {
         try {
             const { data: { token } } = await AuthAPI.login(formData)
             localStorage.setItem('AUTH_TOKEN', token)
-            router.push({name: 'my-appointments'})
+            router.push({name: 'cuentas-espejo'})
         } catch (error) {
-            toast.open({
-                message: error.response.data.msg,
-                type: 'error'
-            })
+            toast.add({ severity: 'error', summary: 'Alerta', detail: 'Ocurrio un problema', life: 9000 });
         }
     }
 </script>
 
 <template>
-    <h1 class="text-6xl font-extrabold text-white text-center mt-10">Iniciar Sesión</h1>
-    <p class="text-2xl text-white text-center my-5">Si tienes una cuenta, inicia sesión</p>
-
+    <Toast />
     <FormKit
         id="loginForm"
         type="form"

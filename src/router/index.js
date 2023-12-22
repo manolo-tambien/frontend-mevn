@@ -2,7 +2,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Importa componentes y API necesarios.
-import HomeView from '../views/HomeView.vue'
 import AppointmentsLayout from '../views/appointments/AppointmentsLayout.vue'
 import CuentasEspejoLayout from '../views/cuentas-espejo/CuentasEspejoLayout.vue'
 import AuthAPI from '../api/AuthAPI'
@@ -14,11 +13,11 @@ const router = createRouter({
   // Define las rutas de la aplicación.
   routes: [
     // Ruta principal ("/") con el componente HomeView asociado.
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: HomeView
+    // },
     // Ruta para la administración ("/admin") con un layout y un componente de vista de citas.
     {
       path: '/admin',
@@ -128,6 +127,7 @@ const router = createRouter({
 
 // Hook de navegación que se ejecuta antes de cada cambio de ruta.
 router.beforeEach( async (to, from, next) => {
+ 
     // Verifica si la ruta requiere autenticación.
     const requiresAuth = to.matched.some(url => url.meta.requiresAuth)
     if(requiresAuth) {
@@ -150,6 +150,7 @@ router.beforeEach( async (to, from, next) => {
 
 // Otro hook de navegación para verificar si la ruta requiere permisos de administrador.
 router.beforeEach( async (to, from, next) => {
+   
   const requiresAdmin = to.matched.some(url => url.meta.requiresAdmin)
   if(requiresAdmin) {
     try {

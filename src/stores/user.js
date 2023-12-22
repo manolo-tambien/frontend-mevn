@@ -1,51 +1,46 @@
-import { ref, onMounted, computed } from 'vue'
-import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router'
+import { ref, onMounted, computed, watch } from 'vue'
+import { defineStore } from 'pinia'
+import { useRouter, useRoute } from 'vue-router'
 import AuthAPI from '../api/AuthAPI'
-import AppointmentAPI from '../api/AppointmentAPI'
 
 export const useUserStore = defineStore('user', () => {
-
     const router = useRouter()
-    
+    const route = useRoute()
     const user = ref({})
-    const userAppointments = ref([])
     const loading = ref(true)
 
-    onMounted(async () => {
+    const fetchUser = async () => {
+        loading.value = true
         try {
             const { data } = await AuthAPI.auth()
             user.value = data
-            await getUserAppointments()
         } catch (error) {
             console.log(error)
         } finally {
             loading.value = false
         }
-    })
-
-    async function getUserAppointments() {
-        const { data } = await AppointmentAPI.getUserAppointments(user.value._id)
-        userAppointments.value = data
     }
+
+    onMounted(fetchUser)
+
+    // Observa los cambios en la ruta
+    watch(() => route.path, async () => {
+        // Aquí puedes llamar a fetchUser o realizar cualquier otra acción necesaria
+        await fetchUser()
+    })
 
     function logout() {
         localStorage.removeItem('AUTH_TOKEN')
         user.value = {}
-        router.push({name : 'login'})
+        router.push({ name: 'login' })
     }
 
     const getUserName = computed(() => user.value?.name ? user.value?.name : '')
 
-    const noAppointments = computed(() => userAppointments.value.length === 0 )
-
     return {
         user,
-        userAppointments,
-        getUserAppointments,
         loading,
         logout,
-        getUserName,
-        noAppointments
+        getUserName
     }
 })
