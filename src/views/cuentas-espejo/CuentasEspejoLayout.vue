@@ -171,7 +171,9 @@ const ocultarDialog = () => {
 };
 
 const editarCuentaEspejo = (cuentaEspejoModificada) => {
+
     cuentaEspejo.value = cuentaEspejoModificada
+
     cuentaEspejoDialog.value = true;
 };
 
